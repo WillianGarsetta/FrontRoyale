@@ -1,0 +1,127 @@
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <app-page-title title="" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Cadastro</h4>
+
+                    <form [formGroup]="novoUsuarioForm" (ngSubmit)="cadastrar()">
+                      <div class="row">
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="formrow-firstname-input">Nome</label>
+                            <input type="text" formControlName="firstname" class="form-control" id="formrow-firstname-input">
+                            <app-mensagem
+                            *ngIf="novoUsuarioForm.get('firstname')?.errors?.['required'] && novoUsuarioForm.get('firstname')?.['touched']"
+                            mensagem="Nome Incorreto"></app-mensagem>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="formrow-lastname-input">Sobrenome</label>
+                            <input type="text" formControlName="lastname" class="form-control" id="formrow-lastname-input">
+                            <app-mensagem
+                            *ngIf="novoUsuarioForm.get('lastname')?.errors?.['required'] && novoUsuarioForm.get('lastname')?.['touched']"
+                            mensagem="Sobrenome Incorreto"></app-mensagem>
+                        </div>
+                      </div>
+                    </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" formControlName="email" class="form-control" id="email">
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.get('email')?.errors?.['required'] && novoUsuarioForm.get('email')?.['touched']"
+                                    mensagem="Email Obrigatório"></app-mensagem>
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.get('email')?.errors?.['email'] && novoUsuarioForm.get('email')?.['touched']"
+                                    mensagem="Formato de email invalido"></app-mensagem>
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.get('email')?.errors?.['usuarioExistente']"
+                                    mensagem="Usuário ja existente"></app-mensagem>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="emailValidate">Confirmar Email</label>
+                                    <input type="email" formControlName="confirmaEmail" class="form-control" id="emailValidate" />
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.get('confirmaEmail')?.errors?.['required'] && novoUsuarioForm.get('confirmaEmail')?.['touched']"
+                                    mensagem="Email Obrigatório"></app-mensagem>
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.get('confirmaEmail')?.errors?.['email'] && novoUsuarioForm.get('confirmaEmail')?.['touched']"
+                                    mensagem="Formato de email invalido"></app-mensagem>
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.errors?.emailDiferente"
+                                    mensagem="Emails divergentes"></app-mensagem>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="emailAcesso">Email de acesso</label>
+                                <input type="email" formControlName="emailAcesso" class="form-control" id="emailAcesso">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="formrow-inputState">Perfis</label>
+                                    <select id="formrow-inputState" formControlName="role" class="form-control">
+                                      <option [ngValue]="null" disabled>Escolha o Perfil</option>
+                                      <option *ngFor="let prf of roleList" [ngValue]="prf">
+                                        {{ prf.name }}
+                                       </option>
+                                    </select>
+                                </div>
+                              </div>
+
+                                <div class="mb-3">
+                                  <div class="form-check">
+                                      <input class="form-check-input" formControlName="blocked" type="checkbox" id="gridCheck">
+                                      <label class="form-check-label" for="gridCheck">
+                                        Blocked
+                                      </label>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                <div class="mb-3">
+                                    <label for="password">Senha</label>
+                                    <input type="password" formControlName="password" class="form-control" id="password" />
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <div class="mb-3">
+                                    <label for="validatePassword">Confirmar Senha</label>
+                                    <input type="password" formControlName="validatePassword" class="form-control" id="validatePassword" />
+                                    <app-mensagem
+                                    *ngIf="novoUsuarioForm.errors?.senhaDiferente"
+                                    mensagem="Senhas divergentes"></app-mensagem>
+                                </div>
+                              </div>
+                            </div>
+
+
+                        <div>
+                            <button type="submit" class="btn btn-primary w-md">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- end row -->
+</div>

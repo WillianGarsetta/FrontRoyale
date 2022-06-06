@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+<app-page-title title="" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Usuários Cadastrados</h4>
+        <p class="card-title-desc">
+         Listagem de usuários cadastrados no sistema
+        </p>
+
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>E-mail de Acesso</th>
+                <th>Perfil</th>
+                <th>Bloqueado</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let usuario of usuarioList">
+              <tr>
+                <td>{{usuario.firstname}}</td>
+                <td>{{usuario.lastName}}</td>
+                <td>{{usuario.emailAcesso}}</td>
+                <td>{{usuario.perfil}}</td>
+                <td>{{usuario.blocked}}</td>
+                <td><i class="mdi mdi-account-edit">Editar</i> / <i class="mdi mdi-account-remove">Deletar</i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
